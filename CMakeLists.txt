@@ -6,8 +6,13 @@ find_package(Eigen3 REQUIRED)
 
 enable_testing()
 
+# Find gtest either via environment variable GTEST_DIR or by supplying a hint
+# directory GTEST_HINTS
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
-set(GTEST_HINTS /opt/gtest-1.7.0)
+set(GTEST_HINTS $ENV{GTEST_DIR})
+if(NOT GTEST_HINTS OR NOT EXISTS ${GTEST_HINTS})
+    set(GTEST_HINTS /opt/gtest-1.7.0)
+endif(NOT GTEST_HINTS OR NOT EXISTS ${GTEST_HINTS})
 find_package(gtest REQUIRED)
 
 include_directories(include)
