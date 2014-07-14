@@ -22,5 +22,5 @@ target_link_libraries(${PROJECT_NAME}_tests gtest gtest_main pthread)
 
 add_test(
   NAME unitTests
-  COMMAND ${PROJECT_NAME_}_tests
+  COMMAND ${PROJECT_NAME}_tests
 )
