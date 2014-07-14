@@ -6,21 +6,22 @@ find_package(Eigen3 REQUIRED)
 
 enable_testing()
 
-message(STATUS "Using gtest directory: $ENV{GTEST_DIR}")
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+set(GTEST_HINTS /path/to/gtest)
+find_package(gtest REQUIRED)
 
 include_directories(include)
-include_directories($ENV{GTEST_DIR}/include)
+include_directories(${GTEST_INCLUDE_DIRS})
 include_directories(${Eigen3_INCLUDE_DIR})
 
 # Compile test suite
 add_definitions("-std=c++11")
 
 # gtest
-link_directories($ENV{GTEST_DIR}/lib)
 add_executable(${PROJECT_NAME}_tests test/quaternion_test.cpp)
-target_link_libraries(${PROJECT_NAME}_tests gtest gtest_main pthread)
+target_link_libraries(${PROJECT_NAME}_tests ${GTEST_LIBRARIES} pthread)
 
 add_test(
-  NAME unitTests
-  COMMAND ${PROJECT_NAME}_tests
+    NAME unitTests
+    COMMAND ${PROJECT_NAME}_tests
 )
