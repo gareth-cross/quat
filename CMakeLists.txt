@@ -16,7 +16,7 @@ include_directories(${Eigen3_INCLUDE_DIR})
 add_definitions("-std=c++11")
 
 # gtest
-link_directories($ENV{GTEST_DIR}/lib)
+link_directories($ENV{GTEST_DIR}/lib/.libs)
 add_executable(${PROJECT_NAME}_tests test/quaternion_test.cpp)
 target_link_libraries(${PROJECT_NAME}_tests gtest gtest_main pthread)
 
