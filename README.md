@@ -18,6 +18,8 @@ In order to build tests, define the `GTEST_DIR` environment variable as the loca
     ./quat_test
 ```
 
+Running tests requires that Eigen3 be installed, in order to test matrix conversion functionality.
+
 ### Bug reporting:
 
 Report bugs by opening an issue on github.

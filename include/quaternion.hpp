@@ -64,25 +64,6 @@ public:
   }
 
   /**
-   *  @brief Copy operator
-   */
-  quat(const quat &q) {
-    for (int i = 0; i < 4; i++) {
-      operator()(i) = q(i);
-    }
-  }
-
-  /**
-   *  @brief Assignment operator
-   */
-  quat &operator=(const quat &q) {
-    for (int i = 0; i < 4; i++) {
-      operator()(i) = q(i);
-    }
-    return *this;
-  }
-
-  /**
    *  @brief L2 norm of the quaternion
    */
   Scalar norm() const {
