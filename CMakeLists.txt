@@ -7,7 +7,7 @@ find_package(Eigen3 REQUIRED)
 enable_testing()
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
-set(GTEST_HINTS /path/to/gtest)
+set(GTEST_HINTS /opt/gtest-1.7.0)
 find_package(gtest REQUIRED)
 
 include_directories(include)
