@@ -12,7 +12,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 set(GTEST_HINTS $ENV{GTEST_DIR})
 if(NOT GTEST_HINTS OR NOT EXISTS ${GTEST_HINTS})
     set(GTEST_HINTS /opt/gtest-1.7.0)
-endif(NOT GTEST_HINTS OR NOT EXISTS ${GTEST_HINTS})
+endif()
 find_package(gtest REQUIRED)
 
 include_directories(include)

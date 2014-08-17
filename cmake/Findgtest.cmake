@@ -73,7 +73,7 @@ list(APPEND GTEST_CHECK_LIBRARY_DIRS
 if(GTEST_HINTS AND EXISTS ${GTEST_HINTS})
     set(GTEST_INCLUDE_DIR_HINTS ${GTEST_HINTS}/include)
     set(GTEST_LIBRARY_DIR_HINTS ${GTEST_HINTS}/lib/.libs)
-endif(GTEST_HINTS AND EXISTS ${GTEST_HINTS})
+endif()
 
 # Search supplied hint directories first if supplied.
 find_path(GTEST_INCLUDE_DIR
@@ -84,7 +84,7 @@ find_path(GTEST_INCLUDE_DIR
 if(NOT GTEST_INCLUDE_DIR OR NOT EXISTS ${GTEST_INCLUDE_DIR})
 GTEST_REPORT_NOT_FOUND("Could not find gtest include directory, "
     "set GTEST_INCLUDE_DIR to directory containing gtest/gtest.h")
-endif(NOT GTEST_INCLUDE_DIR OR NOT EXISTS ${GTEST_INCLUDE_DIR})
+endif()
 
 find_library(GTEST_LIBRARY
     NAMES gtest
@@ -94,9 +94,9 @@ find_library(GTEST_LIBRARY
 if(NOT GTEST_LIBRARY OR NOT EXISTS ${GTEST_LIBRARY})
 GTEST_REPORT_NOT_FOUND("Could not find gtest library, "
     "set GTEST_LIBRARY to full path to libgtest.")
-else(NOT GTEST_LIBRARY OR NOT EXISTS ${GTEST_LIBRARY})
+else()
     string(REGEX MATCH ".*/" GTEST_LIBRARY_DIR ${GTEST_LIBRARY})
-endif(NOT GTEST_LIBRARY OR NOT EXISTS ${GTEST_LIBRARY})
+endif()
 
 # Mark internally as found, then verify. GTEST_REPORT_NOT_FOUND() unsets
 # if called.
@@ -108,7 +108,7 @@ set(GTEST_FOUND TRUE)
 if(GTEST_INCLUDE_DIR AND NOT EXISTS ${GTEST_INCLUDE_DIR}/gtest/gtest.h)
 GTEST_REPORT_NOT_FOUND("Caller defined GTEST_INCLUDE_DIR:"
     " ${GTEST_INCLUDE_DIR} does not contain gtest/gtest.h header.")
-endif(GTEST_INCLUDE_DIR AND NOT EXISTS ${GTEST_INCLUDE_DIR}/gtest/gtest.h)
+endif()
 
 # TODO: This regex for gtest library is pretty primitive, we use lowercase
 #       for comparison to handle Windows using CamelCase library names, could
@@ -117,13 +117,13 @@ string(TOLOWER "${GTEST_LIBRARY}" LOWERCASE_GTEST_LIBRARY)
 if(GTEST_LIBRARY AND NOT "${LOWERCASE_GTEST_LIBRARY}" MATCHES ".*gtest[^/]*")
 GTEST_REPORT_NOT_FOUND("Caller defined GTEST_LIBRARY: "
     "${GTEST_LIBRARY} does not match gtest.")
-endif(GTEST_LIBRARY AND NOT "${LOWERCASE_GTEST_LIBRARY}" MATCHES ".*gtest[^/]*")
+endif()
 
 # Set standard CMake FindPackage variables if found.
 if(GTEST_FOUND)
     set(GTEST_INCLUDE_DIRS ${GTEST_INCLUDE_DIR})
     file(GLOB GTEST_LIBRARIES ${GTEST_LIBRARY_DIR}lib*.so)
-endif(GTEST_FOUND)
+endif()
 
 # Handle REQUIRED / QUIET optional arguments.
 include(FindPackageHandleStandardArgs)
@@ -134,4 +134,4 @@ FIND_PACKAGE_HANDLE_STANDARD_ARGS(Gtest DEFAULT_MSG
 # leave them visible in the standard GUI for the user to set manually.
 if(GTEST_FOUND)
     mark_as_advanced(FORCE GTEST_INCLUDE_DIR GTEST_LIBRARY)
-endif(GTEST_FOUND)
+endif()
